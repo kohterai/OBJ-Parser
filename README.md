@@ -7,6 +7,7 @@ OBJ file parser written in Python.  Converts OBJ files to vector and texture coo
 The Parser currently only examines lines that begin with "v" (vertex), "vt" (vertex texture), and "f" (faces).
 Furthermore the faces should consist of the standard .obj format of v/vt/n/... where the values are separated by slashes.
 
+'''
 v -0.257682 -1.674006 0.731635
 v -0.132727 -1.662367 0.777859
 v -0.467796 -1.580605 0.795138
@@ -18,6 +19,7 @@ vt 0.333450 0.154337
 f 1/1/1 5/2/2 6/3/3 2/4/4
 f 2/4/4 6/3/3 2/5/5 1/6/6
 f 5/2/2 6/7/7 4/8/8 6/3/3
+'''
 
 The code is currently optimized for quaderateral faces.  Given faces f=[0, 1, 2, 3] the parser will return appropiate vertex and texture coordinates for the two triangles [0, 1, 2] and [0, 2, 3].
 
