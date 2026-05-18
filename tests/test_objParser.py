@@ -166,6 +166,30 @@ def test_returns_triangle_count(tmp_path):
     assert tris == 3
 
 
+def test_empty_input_produces_empty_output(tmp_path, capsys):
+    tris, v, t = _run(tmp_path, "")
+    assert tris == 0
+    assert v == ""
+    assert t == ""
+    out = capsys.readouterr().out
+    assert "Total vertices: 0" in out
+    assert "Total texture cordinates: 0" in out
+
+
+def test_crlf_line_endings(tmp_path):
+    src = tmp_path / "in.obj"
+    src.write_bytes(
+        b"v 1 1 1\r\nv 2 2 2\r\nv 3 3 3\r\n"
+        b"vt 0 0\r\nvt 0 0\r\nvt 0 0\r\n"
+        b"f 1/1 2/2 3/3\r\n"
+    )
+    v_out = tmp_path / "v.txt"
+    t_out = tmp_path / "t.txt"
+    tris = op.parse_obj(src, v_out, t_out)
+    assert tris == 1
+    assert v_out.read_text() == "1f*x, 1f*x, 1f*x, 2f*x, 2f*x, 2f*x, 3f*x, 3f*x, 3f*x, "
+
+
 def test_main_cli_writes_outputs(tmp_path):
     src = tmp_path / "in.obj"
     src.write_text(

@@ -10,6 +10,8 @@ Run with: ``python bench.py [--vertices N] [--faces N] [--repeat N]``
 from __future__ import annotations
 
 import argparse
+import contextlib
+import os
 import random
 import tempfile
 import time
@@ -51,11 +53,13 @@ def main() -> int:
 
         runs = []
         tris = 0
-        for i in range(args.repeat):
-            start = time.perf_counter()
-            tris = objParser.parse_obj(obj, v_out, t_out)
-            runs.append(time.perf_counter() - start)
-            print(f"  run {i + 1}: {runs[-1] * 1000:7.1f} ms")
+        with open(os.devnull, "w") as devnull:
+            for i in range(args.repeat):
+                start = time.perf_counter()
+                with contextlib.redirect_stdout(devnull):
+                    tris = objParser.parse_obj(obj, v_out, t_out)
+                runs.append(time.perf_counter() - start)
+                print(f"  run {i + 1}: {runs[-1] * 1000:7.1f} ms")
 
     best = min(runs)
     med = median(runs)

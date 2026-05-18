@@ -24,7 +24,6 @@ Compared with the original, this version:
 from __future__ import annotations
 
 import argparse
-import sys
 from pathlib import Path
 from typing import Union
 
@@ -50,7 +49,7 @@ def parse_obj(input_path: PathLike = "pear.obj",
 
     triangle_count = 0
 
-    with open(input_path, "r") as src:
+    with open(input_path, "r", encoding="utf-8") as src:
         for raw in src:
             if raw.startswith("v "):
                 p = raw.split()
@@ -91,9 +90,9 @@ def parse_obj(input_path: PathLike = "pear.obj",
                         t_emit(texture_strings[ti[i + 1]])
                     triangle_count += 1
 
-    with open(vertex_out_path, "w") as out:
+    with open(vertex_out_path, "w", encoding="utf-8") as out:
         out.write("".join(v_out))
-    with open(texture_out_path, "w") as out:
+    with open(texture_out_path, "w", encoding="utf-8") as out:
         out.write("".join(t_out))
 
     print(f"Total vertices: {triangle_count * 3}")
