@@ -1,0 +1,29 @@
+# Unit cube centred on the origin.
+# Six quad faces, each with a full set of texture coordinates.
+# Run with:  python objParser.py samples/cube.obj
+v -1.0 -1.0 -1.0
+v  1.0 -1.0 -1.0
+v  1.0  1.0 -1.0
+v -1.0  1.0 -1.0
+v -1.0 -1.0  1.0
+v  1.0 -1.0  1.0
+v  1.0  1.0  1.0
+v -1.0  1.0  1.0
+
+vt 0.0 0.0
+vt 1.0 0.0
+vt 1.0 1.0
+vt 0.0 1.0
+
+# -Z face
+f 1/1 2/2 3/3 4/4
+# +Z face
+f 5/1 8/2 7/3 6/4
+# -Y face
+f 1/1 5/2 6/3 2/4
+# +X face
+f 2/1 6/2 7/3 3/4
+# +Y face
+f 3/1 7/2 8/3 4/4
+# -X face
+f 4/1 8/2 5/3 1/4

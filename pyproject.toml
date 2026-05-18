@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "obj-parser"
+version = "1.0.0"
+description = "Fast, forgiving Wavefront .obj parser that emits glDrawArrays-ready coordinate streams."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Koh Terai" }]
+requires-python = ">=3.9"
+keywords = ["obj", "wavefront", "opengl", "3d", "parser", "mesh", "gldrawarrays"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Multimedia :: Graphics :: 3D Modeling",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.urls]
+Homepage = "https://github.com/kohterai/OBJ-Parser"
+Repository = "https://github.com/kohterai/OBJ-Parser"
+Issues = "https://github.com/kohterai/OBJ-Parser/issues"
+
+[project.scripts]
+obj-parser = "objParser:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[tool.setuptools]
+py-modules = ["objParser"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-q"
